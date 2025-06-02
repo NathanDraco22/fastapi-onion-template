@@ -4,7 +4,8 @@
 
 This is a project template based on **Onion Architecture**, designed to build robust and scalable APIs with **FastAPI**. It comes bundled with a custom **CLI (Command Line Interface)** (`onion-cli`) that automates the generation of new entities and their corresponding layers (Models, Repositories, Controllers, Routers), facilitating fast and consistent development.
 
-Data Flow `Router` → `Controller` → `Repository` → `DataSource` → `Service`.
+### Data Flow   
+`Router` → `Controller` → `Repository` → `DataSource` → `Service`.
 
 This architecture was inspired by [Bloc Library's architecture](https://bloclibrary.dev/architecture/),
 
@@ -32,6 +33,8 @@ After activating your virtual environment, you can run CLI commands using:
 ```bash
 onion [command] [arguments] [options]
 ```
+> write your entities in **singular**, for example: `onion crud product --version 1`  
+> If your entities has two words, split them with underscore, for example: `onion crud product_category --version 1`
 
 For a comprehensive list of commands and their detailed help, execute:
 
@@ -75,6 +78,10 @@ This project's structure is designed following the principles of Onion Architect
 
 - `api/`  
 Declares API routes and controllers, often versioned (e.g., api/v1/). It orchestrates incoming requests and routes them to the application logic.
+
+- `config/`  
+Contains configuration files, it could include environment variables and settings. `Onion CLI` creates a `onion-config.toml` file in this folder when is required.
+
 
 - `core/`  
 Contains crucial, shared functionalities beyond simple CRUD, such as notifications, emails, or payment processing. These are core business actions interacting across the system.

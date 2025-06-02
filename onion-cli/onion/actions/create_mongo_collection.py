@@ -1,4 +1,5 @@
 from pathlib import Path
+import toml
 from onion.mediators import Mediator
 from onion.utils.string_utils import (
     get_mongo_collection_filename,
@@ -13,7 +14,9 @@ from .create_mongo_service import create_mongo_service
 
 
 def create_mongo_collection(input_name: str, version: int) -> None:
-    name = get_entity_name_variations(input_name).single_name
+    variations = get_entity_name_variations(input_name)
+
+    name = variations.single_name
 
     # check "app" folder
     app_folder = Path("app")
@@ -48,6 +51,39 @@ def create_mongo_collection(input_name: str, version: int) -> None:
 
     gen_init(version_folder)
 
+    # check config folder
+    config_folder = app_folder / "config"
+    if not config_folder.exists():
+        config_folder.mkdir()
+
+    # check config/onion-config.toml
+    config_file = config_folder / "onion-config.toml"
+    if not config_file.exists():
+        config_file.touch()
+
+    with open(config_file, "r") as f:
+        data = toml.load(f)
+        if "mongo-collections" not in data:
+            data["mongo-collections"] = []
+
+    data["mongo-collections"] = list(
+        set(
+            data["mongo-collections"] + [variations.Name_plural],
+        ),
+    )
+    with open(config_file, "w") as f:
+        toml.dump(data, f)
+
+    with open(config_file, "r") as f:
+        lines = f.readlines()
+
+    with open(config_file, "w") as f:
+        lines = [
+            "# Don't edit this file manually, it's managed by Onion CLI\n",
+            *lines,
+        ]
+        f.writelines(lines)
+
     Mediator().output_folders.append(
-        f"app/services/mongo_collections/v{version}/{name}.py",
+        f"app/services/mongo_collections/v{version}/{variations.plural_name}_collection.py",
     )

@@ -10,7 +10,6 @@ from services import MongoService
 
 
 class ${Name_plural}Collection:
-
     collection_name = "${Name_plural}"
 
     def __new__(cls):

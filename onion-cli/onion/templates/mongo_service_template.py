@@ -6,11 +6,8 @@ mongo_service_template = Template(
 from typing import Literal, get_args, Any
 
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
-from pymongo import ASCENDING, IndexModel
 
-CollectionName = Literal["here names"]
-
-DatabaseName = Literal["here database name"]
+DatabaseName = Literal["here database names"]
 
 
 class MongoService:
@@ -26,18 +23,6 @@ class MongoService:
         self.client = AsyncIOMotorClient(url)
         await self.create_indexes()
 
-    async def create_indexes(self):
-        collection_names = get_args(CollectionName)
-
-        for collection_name in collection_names:
-            collection = self.get_collection(collection_name)
-
-            await collection.create_indexes(
-                [
-                    IndexModel([("id", ASCENDING)], unique=True),
-                ]
-            )
-
     def get_collection(
         self,
         collection_name: CollectionName,
@@ -45,6 +30,10 @@ class MongoService:
     ) -> AsyncIOMotorCollection[dict[str, Any]]:
         db = self.client.get_database(database_name)
         return db.get_collection(collection_name)
+
+    async def create_indexes(self):
+        pass
+
 """
 )
 
