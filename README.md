@@ -73,6 +73,8 @@ onion repo shopping_cart --version 1
 ```
 > `--version` is required
 
+### Important Note on API Versioning
+When a new API version (e.g., `v2`, `v3`) is created, its main router (e.g., `app/api/v2/router.py`) must be manually included in the `app/main.py` file. The CLI does not automate this step to provide explicit control over API routing. You will need to add a line like `app.include_router(router_vX, prefix="/api/vX")` for each new version.
 ## 📁 Project Structure
 This project's structure is designed following the principles of Onion Architecture, promoting a clear separation of concerns, low coupling, and high testability. Below is a detailed explanation of each top-level directory within the app/ folder:
 
