@@ -2,14 +2,14 @@ from typer import Typer
 from typer import Argument, Option
 from rich import print
 from onion.mediators import Mediator
-from onion.actions.create_module import create_module
-from onion.actions.create_module_with_mongo_collection import (
-    create_module_with_mongo_collection,
+from onion.actions.create_repo import create_repo
+from onion.actions.create_repo_with_mongo_collection import (
+    create_repo_with_mongo_collection,
 )
 from onion.actions.create_router import create_router
 from onion.actions.create_router_with_module import create_router_with_module
-from onion.actions.create_router_with_module_with_mongo import (
-    create_router_with_module_with_mongo,
+from onion.actions.create_router_with_repo_with_mongo import (
+    create_router_with_repo_with_mongo,
 )
 
 from onion.utils.string_utils import is_plural_english
@@ -44,17 +44,17 @@ def crud_mongo(
             raise Exception("plural names are not allowed")
 
     for name in names:
-        create_router_with_module_with_mongo(name, version)
+        create_router_with_repo_with_mongo(name, version)
 
     print(
-        "[green]router, module and mongo collection created :heavy_check_mark:[/green]"
+        "[green]router, repository and mongo collection created :heavy_check_mark:[/green]"
     )
     for folder in Mediator().output_folders:
         print(f"[yellow]{folder}[/yellow]")
 
 
 @app.command(help="create a module")
-def module(
+def repo(
     names: list[str] = Argument(help="module name"),
     version: int = Option(help="version example: 1"),
 ):
@@ -63,15 +63,15 @@ def module(
             raise Exception("plural names are not allowed")
 
     for name in names:
-        create_module(name, version)
+        create_repo(name, version)
 
-    print("[green]module created :heavy_check_mark:[/green]")
+    print("[green]repository created :heavy_check_mark:[/green]")
     for folder in Mediator().output_folders:
         print(f"[yellow]{folder}[/yellow]")
 
 
 @app.command(help="create a module with mongo collection")
-def module_mongo(
+def repo_mongo(
     names: list[str] = Argument(help="module name"),
     version: int = Option(help="version example: 1"),
 ):
@@ -80,9 +80,9 @@ def module_mongo(
             raise Exception("plural names are not allowed")
 
     for name in names:
-        create_module_with_mongo_collection(name, version)
+        create_repo_with_mongo_collection(name, version)
 
-    print("[green]module with mongo collection created :heavy_check_mark:[/green]")
+    print("[green]repository with mongo collection created :heavy_check_mark:[/green]")
     for folder in Mediator().output_folders:
         print(f"[yellow]{folder}[/yellow]")
 

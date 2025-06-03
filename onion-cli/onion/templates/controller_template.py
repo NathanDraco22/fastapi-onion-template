@@ -49,7 +49,7 @@ def get_basic_controller_template(singular_entity_name: str) -> str:
 controller_class_template_with_module_content = Template(
     """from fastapi import HTTPException, status
 
-from modules.v${version}.${plural_name} import (
+from repos.v${version}.${plural_name} import (
     Create${Name}, 
     Update${Name}, 
     ${Name}InDb, 

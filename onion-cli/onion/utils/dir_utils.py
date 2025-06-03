@@ -1,23 +1,23 @@
 from pathlib import Path
 
 
-def create_modules_directory(name: str, version: int) -> Path:
+def create_repos_directory(name: str, version: int) -> Path:
     # check "app" folder
     app_folder = Path("app")
     if not app_folder.exists():
         app_folder.mkdir()
 
-    # check "modules" folder
-    module_folder_path = app_folder / "modules"
+    # check "repos" folder
+    module_folder_path = app_folder / "repos"
     if not module_folder_path.exists():
         module_folder_path.mkdir()
 
-    # check "modules/v{version}" folder
+    # check "repos/v{version}" folder
     version_folder_path = module_folder_path / f"v{version}"
     if not version_folder_path.exists():
         version_folder_path.mkdir()
 
-    # check "modules/v{version}/{name}" folder
+    # check "repos/v{version}/{name}" folder
     output_folder_path = version_folder_path / name
     if not output_folder_path.exists():
         output_folder_path.mkdir()

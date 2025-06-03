@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 
-from modules.v1.example import (
+from repos.v1.examples import (
     CreateExample, 
     UpdateExample, 
     ExampleInDb, 

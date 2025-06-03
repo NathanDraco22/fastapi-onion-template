@@ -54,7 +54,7 @@ def get_basic_router_template(singular_entity_name: str, version: int) -> str:
 api_router_template_with_module_content = Template(
     """from fastapi import APIRouter
 
-from modules.v${version}.${plural_name} import Create${Name}, Update${Name}, ${Name}InDb
+from repos.v${version}.${plural_name} import Create${Name}, Update${Name}, ${Name}InDb
 
 from .${plural_name}_controller import ${plural_name}_controller
 

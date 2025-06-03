@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from modules.v1.example import CreateExample, UpdateExample, ExampleInDb
+from repos.v1.examples import CreateExample, UpdateExample, ExampleInDb
 
 from .examples_controller import examples_controller
 

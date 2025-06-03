@@ -303,7 +303,7 @@ wheels = [
 
 [[package]]
 name = "onion"
-version = "0.1.0"
+version = "0.1.4"
 source = { directory = "onion-cli" }
 dependencies = [
     { name = "toml" },

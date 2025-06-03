@@ -17,11 +17,11 @@ from onion.utils.string_utils import (
 )
 from onion.utils.dir_utils import (
     create_generated_output_directory,
-    create_modules_directory,
+    create_repos_directory,
 )
 
 
-def create_module(
+def create_repo(
     input_name: str,
     version: int | None = None,
     use_mongo: bool = False,
@@ -34,9 +34,9 @@ def create_module(
     if version is None:
         output_folder_path = create_generated_output_directory(name)
     else:
-        output_folder_path = create_modules_directory(variations.plural_name, version)
+        output_folder_path = create_repos_directory(variations.plural_name, version)
 
-    # check "modules/{name}_repository.py" file
+    # check "repos/{name}_repository.py" file
     repository_file_path = output_folder_path / get_repository_filename(name)
     if not repository_file_path.exists():
         repository_file_path.touch()
@@ -83,4 +83,4 @@ def create_module(
 
     init_file_path.write_text(get_init_file_template(name))
 
-    Mediator().output_folders.append(f"app/modules/v{version}/{variations.plural_name}")
+    Mediator().output_folders.append(f"app/repos/v{version}/{variations.plural_name}")

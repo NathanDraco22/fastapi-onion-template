@@ -51,10 +51,10 @@ Creates the router, controller, and module files for a new entity. This is the m
 - `crud-mongo <entity-name>`  
 Creates the router, controller, module files, and automatically handles the MongoDB collection setup for a new entity. Use this if your project uses MongoDB.
 
-- `module <entity-name>`  
-Creates only the module (model, repository, controller implementation) files for an entity, without generating the API router.
+- `repo <entity-name>`  
+Creates only the module (model, repository) files for an entity, without generating the API router.
 
-- `module-mongo <entity-name>`  
+- `repo-mongo <entity-name>`  
 Creates only the module files for an entity and handles the MongoDB collection setup.
 
 - `router <entity-name>`  
@@ -62,14 +62,14 @@ Creates only the API router file for an entity.
 
 ### example 
 ```bash
-# Generate a full CRUD entity for 'Product' (router, controller, module)
+# Generate a full CRUD entity for 'Product' (router, controller, repository)
 onion crud product --version 1
 
 # Generate a full CRUD entity for 'Order' with MongoDB collection setup
 onion crud-mongo order --version 2
 
-# Generate only the module files for 'ShoppingCart'
-onion module shopping_cart --version 1
+# Generate only the repo files for 'ShoppingCart'
+onion repo shopping_cart --version 1
 ```
 > `--version` is required
 
@@ -86,8 +86,8 @@ Contains configuration files, it could include environment variables and setting
 - `core/`  
 Contains crucial, shared functionalities beyond simple CRUD, such as notifications, emails, or payment processing. These are core business actions interacting across the system.
 
-- `modules/`  
-Holds entity-specific logic, with a dedicated folder per entity (e.g., modules/v1/user/). Each module encapsulates an entity's CRUD operations, including its repository, controller, and data models (e.g., Create, Update, InDb).
+- `repos/`  
+Holds entity-specific logic, with a dedicated folder per entity (e.g., repos/v1/user/). Each repository encapsulates an entity's CRUD operations.
 
 - `responses/`  
 Contains Pydantic models for API responses, which may differ from internal data models. These models can also be versioned.
