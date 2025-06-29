@@ -9,7 +9,7 @@ class Base${Name}(BaseModel):
     pass
 
 
-class Create${Name}(BaseModel):
+class Create${Name}(Base${Name}):
     pass
 
 

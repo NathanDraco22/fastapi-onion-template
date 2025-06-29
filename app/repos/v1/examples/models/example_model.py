@@ -5,7 +5,7 @@ class BaseExample(BaseModel):
     pass
 
 
-class CreateExample(BaseModel):
+class CreateExample(BaseExample):
     pass
 
 
