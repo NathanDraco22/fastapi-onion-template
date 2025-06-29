@@ -7,7 +7,7 @@ from typing import Literal, Any
 
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
 
-DatabaseName = Literal["here database names"]
+DatabaseName = Literal["MyDatabase"]
 
 
 class MongoService:
@@ -26,7 +26,7 @@ class MongoService:
     def get_collection(
         self,
         collection_name: str,
-        database_name: DatabaseName = "here database name",
+        database_name: DatabaseName = "MyDatabase",
     ) -> AsyncIOMotorCollection[dict[str, Any]]:
         db = self.client.get_database(database_name)
         return db.get_collection(collection_name)
