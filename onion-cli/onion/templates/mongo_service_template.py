@@ -3,7 +3,7 @@ from string import Template
 
 mongo_service_template = Template(
     """import os
-from typing import Literal, get_args, Any
+from typing import Literal, Any
 
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
 
@@ -25,7 +25,7 @@ class MongoService:
 
     def get_collection(
         self,
-        collection_name: CollectionName,
+        collection_name: str,
         database_name: DatabaseName = "here database name",
     ) -> AsyncIOMotorCollection[dict[str, Any]]:
         db = self.client.get_database(database_name)
