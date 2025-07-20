@@ -63,27 +63,27 @@ ${plural_name}_router = APIRouter(tags=["${plural_name}V${version}"])
 
 
 @${plural_name}_router.post("")
-async def create_${single_name}_endpoint(body: Create${Name}) -> ${Name}InDb:
+async def create_${single_name}(body: Create${Name}) -> ${Name}InDb:
     return await ${plural_name}_controller.create_${single_name}(body)
 
 
 @${plural_name}_router.get("")
-async def get_all_${plural_name}_endpoint() -> list[${Name}InDb]:
+async def get_all_${plural_name}() -> list[${Name}InDb]:
     return await ${plural_name}_controller.get_all_${plural_name}()
 
 
 @${plural_name}_router.get("/{${single_name}_id}")
-async def get_${single_name}_by_id_endpoint(${single_name}_id: str) -> ${Name}InDb:
+async def get_${single_name}_by_id(${single_name}_id: str) -> ${Name}InDb:
     return await ${plural_name}_controller.get_${single_name}_by_id(${single_name}_id)
 
 
 @${plural_name}_router.patch("/{${single_name}_id}")
-async def update_${single_name}_by_id_endpoint(${single_name}_id: str, body: Update${Name}) -> ${Name}InDb: 
+async def update_${single_name}_by_id(${single_name}_id: str, body: Update${Name}) -> ${Name}InDb: 
     return await ${plural_name}_controller.update_${single_name}_by_id(${single_name}_id, body)
 
 
 @${plural_name}_router.delete("/{${single_name}_id}")
-async def delete_${single_name}_by_id_endpoint(${single_name}_id: str) -> ${Name}InDb:
+async def delete_${single_name}_by_id(${single_name}_id: str) -> ${Name}InDb:
     return await ${plural_name}_controller.delete_${single_name}_by_id(${single_name}_id)
 """
 )

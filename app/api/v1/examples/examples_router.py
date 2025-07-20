@@ -24,7 +24,9 @@ async def get_example_by_id_endpoint(example_id: str) -> ExampleInDb:
 
 
 @examples_router.patch("/{example_id}")
-async def update_example_by_id_endpoint(example_id: str, body: UpdateExample) -> ExampleInDb: 
+async def update_example_by_id_endpoint(
+    example_id: str, body: UpdateExample
+) -> ExampleInDb:
     return await examples_controller.update_example_by_id(example_id, body)
 
 
