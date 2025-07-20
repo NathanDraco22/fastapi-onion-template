@@ -147,7 +147,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "onion", directory = "onion-cli" },
+    { name = "onion", git = "https://github.com/NathanDraco22/onion-cli.git" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-asyncio", specifier = ">=0.25.3" },
     { name = "ruff", specifier = ">=0.9.10" },
@@ -304,16 +304,10 @@ wheels = [
 [[package]]
 name = "onion"
 version = "0.1.5"
-source = { directory = "onion-cli" }
+source = { git = "https://github.com/NathanDraco22/onion-cli.git#eba5a0ce850bedb2ccfec683329c1d09f0c62c4e" }
 dependencies = [
     { name = "toml" },
     { name = "typer" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "toml", specifier = ">=0.10.2" },
-    { name = "typer", specifier = ">=0.16.0" },
 ]
 
 [[package]]
