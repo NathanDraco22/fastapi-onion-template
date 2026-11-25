@@ -3,19 +3,37 @@ name = "fastapi-onion-template"
 version = "0.1.1"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13.9"
+requires-python = ">=3.13"
 dependencies = [
-    "fastapi[standard]>=0.138.0",
+    "fastapi[standard]>=0.165.0",
+    "pymongo>=4.20.1",
     "python-dotenv>=1.2.2",
 ]
 
 [dependency-groups]
 dev = [
     "onion",
-    "pytest-asyncio>=1.4.0",
-    "pytest>=9.1.1",
-    "ruff>=0.15.19",
+    "pytest-asyncio>=1.5.0",
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+    "ty>=0.0.110",
 ]
 
 [tool.uv.sources]
 onion = { git = "https://github.com/NathanDraco22/onion-cli.git" }
+
+[tool.pytest.ini_options]
+pythonpath = ["app"]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "api",
+    "app_lifespan",
+    "core",
+    "main",
+    "repos",
+    "responses",
+    "services",
+    "tools",
+]
